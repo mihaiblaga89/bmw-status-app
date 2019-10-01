@@ -1,0 +1,102 @@
+{
+    "name": "bmw-status",
+    "version": "0.1.0",
+    "private": true,
+    "description": "BMW ConnectedDrive Status",
+    "author": "Mihai Blaga <mihaiblaga89@gmail.com> (https://www.mihaiblaga.dev)",
+    "dependencies": {
+        "@atlaskit/button": "^13.3.1",
+        "@atlaskit/checkbox": "^10.1.0",
+        "@atlaskit/form": "^6.2.3",
+        "@atlaskit/modal-dialog": "^10.3.1",
+        "@atlaskit/page": "^11.0.8",
+        "@atlaskit/select": "^10.1.1",
+        "@atlaskit/spinner": "^12.0.9",
+        "@atlaskit/textfield": "^3.0.7",
+        "@mihaiblaga89/bmw-connecteddrive-api": "../bmw-connecteddrive-api",
+        "@reach/router": "^1.2.1",
+        "cross-env": "^6.0.0",
+        "electron-is-dev": "^1.1.0",
+        "keytar": "^5.0.0-beta.2",
+        "nedb-promises": "^4.0.0",
+        "node-notifier": "^6.0.0",
+        "prop-types": "^15.7.2",
+        "react": "^16.9.0",
+        "react-dom": "^16.9.0",
+        "react-scripts": "3.1.2",
+        "styled-components": "^3.2.6"
+    },
+    "scripts": {
+        "postinstall": "electron-builder install-app-deps",
+        "preelectron-pack": "yarn build",
+        "electron-pack": "build -mw",
+        "react-start": "react-scripts start",
+        "react-build": "react-scripts build",
+        "react-test": "react-scripts test --env=jsdom",
+        "react-eject": "react-scripts eject",
+        "publish": "yarn react-build && electron-builder --publish=always",
+        "dist": "yarn react-build && electron-builder",
+        "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\""
+    },
+    "eslintConfig": {
+        "extends": "react-app"
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "concurrently": "^4.1.2",
+        "electron": "^6.0.10",
+        "electron-builder": "^21.2.0",
+        "eslint": "^6.4.0",
+        "eslint-config-airbnb": "^18.0.1",
+        "eslint-config-prettier": "^6.3.0",
+        "eslint-plugin-import": "^2.18.2",
+        "eslint-plugin-jest": "^22.17.0",
+        "eslint-plugin-jsx-a11y": "^6.2.3",
+        "eslint-plugin-prettier": "^3.1.1",
+        "eslint-plugin-react": "^7.14.3",
+        "husky": "^3.0.5",
+        "jest": "^24.9.0",
+        "prettier": "^1.18.2",
+        "pretty-quick": "^1.11.1",
+        "wait-on": "^3.3.0"
+    },
+    "homepage": "./",
+    "build": {
+        "directories": {
+            "buildResources": "public"
+        },
+        "appId": "dev.mihaiblaga89.bmwstatus",
+        "productName": "BMWStatus",
+        "copyright": "Copyright © 2019 ${author}",
+        "mac": {
+            "category": "public.app-category.utilities",
+            "icon": "./public/resources/icons/mac/app.icns"
+        },
+        "asarUnpack": [
+            "./node_modules/node-notifier/vendor/**"
+        ],
+        "extraResources": [
+            {
+                "from": "./node_modules/node-notifier/vendor",
+                "to": "app.asar.unpacked/node_modules/node-notifier/vendor"
+            }
+        ]
+    },
+    "main": "public/electron.js",
+    "husky": {
+        "hooks": {
+            "pre-commit": "pretty-quick --staged"
+        }
+    }
+}
