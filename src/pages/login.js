@@ -3,7 +3,7 @@ import Spinner from '@atlaskit/spinner';
 import TextField from '@atlaskit/textfield';
 import Button, { ButtonGroup } from '@atlaskit/button';
 import { Checkbox } from '@atlaskit/checkbox';
-import BMWApi from '@mihaiblaga89/bmw-connecteddrive-api';
+// import BMWApi from '@mihaiblaga89/bmw-connecteddrive-api';
 import Select from '@atlaskit/select';
 import PropTypes from 'prop-types';
 import Form, {
@@ -194,7 +194,7 @@ const Login = ({ navigate }) => {
 };
 
 Login.propTypes = {
-    navigate: PropTypes.func,
+    navigate: PropTypes.func.isRequired,
 };
 
 export default Login;
