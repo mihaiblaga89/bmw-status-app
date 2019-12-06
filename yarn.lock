@@ -1178,10 +1178,10 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
-"@mihaiblaga89/bmw-connecteddrive-api@^0.3.2":
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/@mihaiblaga89/bmw-connecteddrive-api/-/bmw-connecteddrive-api-0.3.2.tgz#72a4d251c1a9414ad0f374e0d8013847fd8a65af"
-  integrity sha512-BJmVqkD8dtdpuBm6QquEp6uUVQRAW0/nsvpkbgvdzRIqVGHLZWCw7fKAmyp9lBpQKLj85lH87f1mzNb1aUt/PA==
+"@mihaiblaga89/bmw-connecteddrive-api@^0.3.3":
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/@mihaiblaga89/bmw-connecteddrive-api/-/bmw-connecteddrive-api-0.3.3.tgz#83da73aa76081029276b5fdd55313b00ade20cb8"
+  integrity sha512-0CmmTGmgJn9mzLqlyecLORdeZgNruTf5e3yH4tHgtQ2wUSPeCsm65lL8ckrOV28K7g2XNkN5sIQs0ZW82n9gTQ==
   dependencies:
     axios "^0.19.0"
     moment "^2.24.0"
