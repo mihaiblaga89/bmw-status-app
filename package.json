@@ -20,14 +20,13 @@
     },
     "scripts": {
         "postinstall": "electron-builder install-app-deps",
-        "preelectron-pack": "yarn build",
         "electron-pack": "build -mw",
         "react-start": "node scripts/start.js",
         "react-build": "node scripts/build.js",
         "react-test": "node scripts/test.js --env=jsdom",
         "react-eject": "node scripts/eject.js",
         "publish": "yarn react-build && electron-builder --publish=always",
-        "dist": "yarn react-build && electron-builder",
+        "build": "yarn react-build && electron-builder",
         "start": "concurrently \"cross-env BROWSER=none yarn react-start\" \"wait-on http://localhost:3000 && electron .\""
     },
     "eslintConfig": {
@@ -135,7 +134,7 @@
             }
         ]
     },
-    "main": "public/electron.js",
+    "main": "build/electron.js",
     "husky": {
         "hooks": {
             "pre-commit": "pretty-quick --staged"
