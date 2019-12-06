@@ -1,18 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Spinner from '@atlaskit/spinner';
-import TextField from '@atlaskit/textfield';
-import Button, { ButtonGroup } from '@atlaskit/button';
-import { Checkbox } from '@atlaskit/checkbox';
-// import BMWApi from '@mihaiblaga89/bmw-connecteddrive-api';
-import Select from '@atlaskit/select';
+import BMWApi from '@mihaiblaga89/bmw-connecteddrive-api';
 import PropTypes from 'prop-types';
-import Form, {
-    CheckboxField,
-    Field,
-    FormFooter,
-    ErrorMessage,
-    HelperMessage,
-} from '@atlaskit/form';
+import { Loader, Form, Checkbox, Button, Dropdown } from 'semantic-ui-react';
+import styled from 'styled-components';
 
 import DB from '../db';
 import { REGION_SELECT_OPTIONS, CREDENTIALS_SERVICE } from '../constants';
@@ -23,16 +13,28 @@ import { REGION_SELECT_OPTIONS, CREDENTIALS_SERVICE } from '../constants';
 
 const keytar = window.require('electron').remote.require('keytar');
 
+const Wrapper = styled.div`
+    display: flex;
+    margin: 0 auto;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+`;
+
 const Login = ({ navigate }) => {
     const [loading, setLoading] = useState(true);
+    const [user, setUser] = useState('');
+    const [pass, setPass] = useState('');
+    const [region, setRegion] = useState(null);
+    const [remember, setRemember] = useState(false);
 
-    const initializeBMWApi = async (username, password, region, remember) => {
-        // await BMWApi.init({
-        //     region,
-        //     username,
-        //     password,
-        //     debug: true,
-        // });
+    const initializeBMWApi = async (username, password, reg) => {
+        await BMWApi.init({
+            region: reg,
+            username,
+            password,
+            debug: true,
+        });
 
         if (remember) {
             await keytar.setPassword(
@@ -41,9 +43,8 @@ const Login = ({ navigate }) => {
                 password
             );
         }
-        await DB.settings.update({ _id: 'username', value: username });
-        const res = await DB.settings.find();
-        console.log('res', res);
+        DB.settings.set('username', username);
+        setLoading(false);
         navigate('/dash');
         return true;
     };
@@ -52,149 +53,72 @@ const Login = ({ navigate }) => {
         keytar.findCredentials(CREDENTIALS_SERVICE).then(acc => {
             if (acc.length > 0) {
                 const { account, password } = acc[0];
-                const region = account.split('::')[0];
+                const reg = account.split('::')[0];
                 const username = account.split('::')[1];
-                setLoading(false);
-                return initializeBMWApi(username, password, region);
+                return initializeBMWApi(username, password, reg);
             }
             return setLoading(false);
         });
     }, []);
 
-    if (loading)
+    if (loading) {
         return (
-            <div
-                style={{
-                    display: 'flex',
-                    margin: '0 auto',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    height: '100%',
-                }}
-            >
-                <Spinner size="large" />
-            </div>
+            <Wrapper>
+                <Loader active />
+            </Wrapper>
         );
+    }
 
     return (
-        <div
-            style={{
-                display: 'flex',
-                margin: '0 auto',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '100%',
-            }}
-        >
-            <div
-                style={{
-                    display: 'flex',
-                    width: '400px',
-                    maxWidth: '100%',
-                    margin: '0 auto',
-                    flexDirection: 'column',
-                }}
-            >
-                <Form
-                    onSubmit={({ region, username, password, remember }) => {
-                        if (!region)
-                            return { region: 'Please select a region' };
-                        return initializeBMWApi(
-                            username,
-                            password,
-                            region.value,
-                            remember
-                        );
-                    }}
-                >
-                    {({ formProps, submitting }) => (
-                        <form {...formProps}>
-                            <Field
-                                name="username"
-                                label="User name"
-                                isRequired
-                                defaultValue="mihaiblaga89@gmail.com"
-                            >
-                                {({ fieldProps }) => (
-                                    <>
-                                        <TextField
-                                            autoComplete="off"
-                                            {...fieldProps}
-                                        />
-                                    </>
-                                )}
-                            </Field>
-                            <Field
-                                name="password"
-                                label="Password"
-                                defaultValue=""
-                                isRequired
-                            >
-                                {({ fieldProps, error }) => (
-                                    <>
-                                        <TextField
-                                            type="password"
-                                            {...fieldProps}
-                                        />
-                                        {error && (
-                                            <ErrorMessage>{error}</ErrorMessage>
-                                        )}
-                                    </>
-                                )}
-                            </Field>
-                            <Field
-                                name="region"
-                                label="Region"
-                                defaultValue={REGION_SELECT_OPTIONS[0]}
-                                isRequired
-                            >
-                                {({ fieldProps, error }) => (
-                                    <>
-                                        <Select
-                                            options={REGION_SELECT_OPTIONS}
-                                            placeholder="Region"
-                                            {...fieldProps}
-                                        />
-                                        <HelperMessage>
-                                            If your region is not present in the
-                                            list, select EU.
-                                        </HelperMessage>
-                                        {error && (
-                                            <ErrorMessage>{error}</ErrorMessage>
-                                        )}
-                                    </>
-                                )}
-                            </Field>
-                            <CheckboxField name="remember" defaultIsChecked>
-                                {({ fieldProps }) => (
-                                    <Checkbox
-                                        {...fieldProps}
-                                        label="Remember me"
-                                    />
-                                )}
-                            </CheckboxField>
-
-                            <FormFooter>
-                                <ButtonGroup>
-                                    <Button
-                                        type="submit"
-                                        appearance="primary"
-                                        isLoading={submitting}
-                                    >
-                                        Login
-                                    </Button>
-                                </ButtonGroup>
-                            </FormFooter>
-                        </form>
-                    )}
+        <Wrapper>
+            <div style={{ width: '400px' }}>
+                <Form>
+                    <Form.Field
+                        label="Username"
+                        control="input"
+                        value={user}
+                        required
+                        onChange={e => setUser(e.target.value)}
+                        placeholder="email@example.com"
+                    />
+                    <Form.Field
+                        label="Password"
+                        control="input"
+                        required
+                        type="password"
+                        value={pass}
+                        onChange={e => setPass(e.target.value)}
+                        placeholder="******"
+                    />
+                    <Form.Field>
+                        <Checkbox
+                            label="Remember me"
+                            checked={remember}
+                            onChange={(e, t) => setRemember(t.checked)}
+                        />
+                    </Form.Field>
+                    <Form.Field>
+                        <Dropdown
+                            placeholder="Region"
+                            value={region}
+                            fluid
+                            required
+                            selection
+                            onChange={(e, { value }) => setRegion(value)}
+                            options={REGION_SELECT_OPTIONS}
+                        />
+                    </Form.Field>
+                    <Button type="submit" fluid>
+                        Submit
+                    </Button>
                 </Form>
             </div>
-        </div>
+        </Wrapper>
     );
 };
 
 Login.propTypes = {
-    navigate: PropTypes.func.isRequired,
+    navigate: PropTypes.func,
 };
 
 export default Login;

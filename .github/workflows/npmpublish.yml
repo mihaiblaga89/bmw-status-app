@@ -1,0 +1,17 @@
+name: Node.js Package
+
+on:
+    push:
+        tags:
+            - '*'
+
+jobs:
+    build:
+        runs-on: macos-latest
+        steps:
+            - uses: actions/checkout@master
+            - uses: actions/setup-node@v1
+              with:
+                  node-version: 12
+            - run: yarn
+            - run: yarn build

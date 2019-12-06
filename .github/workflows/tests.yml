@@ -1,0 +1,14 @@
+name: tests
+
+on: [push]
+
+jobs:
+    build:
+        runs-on: macos-latest
+        steps:
+            - uses: actions/checkout@master
+            - uses: actions/setup-node@master
+              with:
+                  node-version: 12
+            - run: yarn
+            - run: yarn test

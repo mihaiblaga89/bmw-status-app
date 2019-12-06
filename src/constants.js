@@ -1,14 +1,18 @@
-const CREDENTIALS_SERVICE = 'BMWStatusApp';
-const REGION_SELECT_OPTIONS = [
+export const CREDENTIALS_SERVICE = 'BMWStatusApp';
+export const REGION_SELECT_OPTIONS = [
     {
-        label: 'Europe',
+        key: 'eu',
+        text: 'Europe',
         value: 'eu',
     },
     {
-        label: 'North America',
+        key: 'us',
+        text: 'North America',
         value: 'us',
     },
-    { label: 'Asia', value: 'cn' },
+    {
+        key: 'cn',
+        text: 'Asia',
+        value: 'cn',
+    },
 ];
-
-export { CREDENTIALS_SERVICE, REGION_SELECT_OPTIONS };

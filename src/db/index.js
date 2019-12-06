@@ -1,6 +1,7 @@
-const Datastore = window.require('electron').remote.require('nedb-promises');
+const Store = window.require('electron').remote.require('electron-store');
 
+const settings = new Store();
 const db = {
-    settings: Datastore.create('./db.db'),
+    settings,
 };
 export default db;
