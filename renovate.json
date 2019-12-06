@@ -1,9 +1,22 @@
 {
-    "extends": ["config:base"],
     "rangeStrategy": "bump",
     "automerge": true,
     "commitMessageSuffix": "(ignore)",
     "major": {
         "automerge": false
-    }
+    },
+    "extends": [
+        "config:base",
+        ":separateMajorReleases",
+        ":combinePatchMinorReleases",
+        ":ignoreUnstable",
+        ":prImmediately",
+        ":semanticPrefixFixDepsChoreOthers",
+        ":updateNotScheduled",
+        ":ignoreModulesAndTests",
+        ":maintainLockFilesDisabled",
+        ":autodetectPinVersions",
+        "group:monorepos",
+        "group:recommended"
+    ]
 }
