@@ -62,7 +62,7 @@
         "css-loader": "2.1.1",
         "dotenv": "6.2.0",
         "dotenv-expand": "5.1.0",
-        "electron": "^6.0.10",
+        "electron": "^6.1.5",
         "electron-builder": "^21.2.0",
         "eslint": "^6.4.0",
         "eslint-config-airbnb": "^18.0.1",
