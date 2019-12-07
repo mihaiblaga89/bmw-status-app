@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Card, Image, Icon } from 'semantic-ui-react';
 
 const Vehicle = ({ vehicle }) => {
     console.log('veh', vehicle, vehicle.vin);
-    vehicle.getImage().then(console.log);
+    const [image, setImage] = useState(null);
+
+    useEffect(() => {
+        vehicle.getImage().then(setImage);
+    }, []);
+
     return (
         <Card>
-            <Image
-                src="https://react.semantic-ui.com/images/avatar/large/matthew.png"
-                wrapped
-                ui={false}
-            />
+            {image && <Image src={image} wrapped />}
             <Card.Content>
                 <Card.Header>{vehicle.vin}</Card.Header>
                 <Card.Meta>
