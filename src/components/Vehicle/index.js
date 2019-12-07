@@ -7,9 +7,7 @@ const Vehicle = ({ vehicle }) => {
     const [image, setImage] = useState(null);
 
     useEffect(() => {
-        vehicle
-            .getImage()
-            .then(img => setImage(`data:image/png;base64,${img}`));
+        vehicle.getImage().then(setImage);
     }, []);
 
     return (
