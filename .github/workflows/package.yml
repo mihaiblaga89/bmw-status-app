@@ -15,11 +15,13 @@ jobs:
                   node-version: 12
             - run: yarn
             - run: yarn build
+            - name: Set env
+              run: echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
             - name: Upload
               uses: svenstaro/upload-release-action@v1-release
               with:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
-                  file: dist/bmw-status-${{ github.ref }}.dmg
+                  file: dist/bmw-status-${{ env.RELEASE_VERSION }}.dmg
                   asset_name: macos
                   tag: ${{ github.ref }}
                   overwrite: true
