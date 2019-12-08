@@ -1,0 +1,25 @@
+name: Package
+
+on:
+    push:
+        tags:
+            - '*'
+
+jobs:
+    build:
+        runs-on: macos-latest
+        steps:
+            - uses: actions/checkout@master
+            - uses: actions/setup-node@v1
+              with:
+                  node-version: 12
+            - run: yarn
+            - run: yarn build
+            - name: Upload
+              uses: svenstaro/upload-release-action@v1-release
+              with:
+                  repo_token: ${{ secrets.GITHUB_TOKEN }}
+                  file: dist/bmw-status-${{ github.ref }}.dmg
+                  asset_name: macos
+                  tag: ${{ github.ref }}
+                  overwrite: true

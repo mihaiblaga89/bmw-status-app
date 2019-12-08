@@ -7,6 +7,7 @@
     "dependencies": {
         "@mihaiblaga89/bmw-connecteddrive-api": "^0.4.1",
         "@reach/router": "^1.2.1",
+        "electron": "^6.1.5",
         "electron-is-dev": "^1.1.0",
         "electron-store": "^5.1.0",
         "keytar": "^5.0.0",
@@ -62,7 +63,6 @@
         "css-loader": "2.1.1",
         "dotenv": "6.2.0",
         "dotenv-expand": "5.1.0",
-        "electron": "^6.1.5",
         "electron-builder": "^21.2.0",
         "eslint": "^6.7.2",
         "eslint-config-airbnb": "^18.0.1",
@@ -102,7 +102,6 @@
         "resolve-url-loader": "3.1.1",
         "sass-loader": "7.3.1",
         "semver": "6.3.0",
-        "spectron": "^9.0.0",
         "style-loader": "1.0.1",
         "terser-webpack-plugin": "1.4.2",
         "ts-pnp": "1.1.5",
