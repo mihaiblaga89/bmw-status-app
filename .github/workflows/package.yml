@@ -21,7 +21,7 @@ jobs:
               uses: svenstaro/upload-release-action@v1-release
               with:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
-                  file: dist/bmw-status-${{ env.RELEASE_VERSION }}.dmg
+                  file: dist/BMWStatus-${{ env.RELEASE_VERSION }}.dmg
                   asset_name: macos
                   tag: ${{ github.ref }}
                   overwrite: true
