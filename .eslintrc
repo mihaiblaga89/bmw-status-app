@@ -25,7 +25,8 @@
             180
         ],
         "react/jsx-props-no-spreading": "off",
-        "react/forbid-prop-types": "off"
+        "react/forbid-prop-types": "off",
+        "react/no-unescaped-entities": "off"
     },
     "env": {
         "node": true,

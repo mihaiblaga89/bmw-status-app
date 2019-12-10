@@ -1,14 +1,13 @@
 import React from 'react';
 import { Segment, Header, Icon, Button } from 'semantic-ui-react';
 import BMWApi from '@mihaiblaga89/bmw-connecteddrive-api';
-import PropTypes from 'prop-types';
 
 import { OPEN_ISSUE_URL } from '../../constants';
-import Vehicle from '../Vehicle';
+import VehicleCard from '../VehicleCard';
 
 const { shell } = window.require('electron');
 
-const HomeTab = ({ navigate }) => {
+const HomeTab = () => {
     const { vehicles } = BMWApi;
     if (!vehicles.length) {
         return (
@@ -31,18 +30,10 @@ const HomeTab = ({ navigate }) => {
     return (
         <Segment>
             {vehicles.map(vehicle => (
-                <Vehicle
-                    onClick={() => navigate(`vehicle/${vehicle.vin}`)}
-                    vehicle={vehicle}
-                    key={vehicle.vin}
-                />
+                <VehicleCard vehicle={vehicle} key={vehicle.vin} />
             ))}
         </Segment>
     );
-};
-
-HomeTab.propTypes = {
-    navigate: PropTypes.func,
 };
 
 export default HomeTab;

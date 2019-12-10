@@ -16,4 +16,4 @@ Features
 
 ### `npm start`
 
-App will open but keep in mind it's a tray app.
+Tadaaa, app opens

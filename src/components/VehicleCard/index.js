@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Card, Image, Placeholder } from 'semantic-ui-react';
+import { Card, Image, Placeholder, Modal } from 'semantic-ui-react';
 
 import carPlaceholder from '../../assets/images/car-placeholder.jpg';
+import VehicleDisplay from '../VehicleDetails';
 
-const Vehicle = ({ vehicle, onClick }) => {
+const VehicleCard = ({ vehicle }) => {
     const [image, setImage] = useState(null);
 
     useEffect(() => {
@@ -14,8 +15,8 @@ const Vehicle = ({ vehicle, onClick }) => {
             .catch(() => setImage(carPlaceholder));
     }, []);
 
-    return (
-        <Card onClick={onClick}>
+    const VCard = (
+        <Card>
             {image ? (
                 <Image src={image} wrapped />
             ) : (
@@ -31,11 +32,18 @@ const Vehicle = ({ vehicle, onClick }) => {
             </Card.Content>
         </Card>
     );
+    return (
+        <Modal size="large" trigger={VCard}>
+            <Modal.Header>{vehicle.name}</Modal.Header>
+            <Modal.Content>
+                <VehicleDisplay vehicle={vehicle} />
+            </Modal.Content>
+        </Modal>
+    );
 };
 
-Vehicle.propTypes = {
+VehicleCard.propTypes = {
     vehicle: PropTypes.object.isRequired,
-    onClick: PropTypes.func.isRequired,
 };
 
-export default Vehicle;
+export default VehicleCard;

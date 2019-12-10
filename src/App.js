@@ -8,6 +8,7 @@ import {
 } from '@reach/router';
 import styled from 'styled-components';
 
+import 'typeface-roboto/index.css';
 import './App.css';
 import Login from './pages/login';
 import Dashboard from './pages/dashboard';

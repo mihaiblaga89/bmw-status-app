@@ -26,3 +26,22 @@ body,
 .App-link {
     color: #09d3ac;
 }
+
+#title-padding {
+    -webkit-app-region: drag;
+    height: 30px;
+    width: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+* {
+    font-family: 'Roboto', sans-serif !important;
+}
+
+i.icon {
+    font-family: Icons !important;
+}

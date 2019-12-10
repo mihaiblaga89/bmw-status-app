@@ -64,7 +64,7 @@ const Login = ({ navigate }) => {
     if (loading) {
         return (
             <Wrapper>
-                <Loader active />
+                <Loader inverted active />
             </Wrapper>
         );
     }
