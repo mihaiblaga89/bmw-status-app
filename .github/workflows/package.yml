@@ -22,6 +22,6 @@ jobs:
               with:
                   repo_token: ${{ secrets.GITHUB_TOKEN }}
                   file: dist/BMWStatus-${{ env.RELEASE_VERSION }}.dmg
-                  asset_name: macos
+                  asset_name: BMWStatus-${{ env.RELEASE_VERSION }}.dmg
                   tag: ${{ github.ref }}
                   overwrite: true
