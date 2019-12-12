@@ -1,6 +1,6 @@
 {
     "name": "bmw-status",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "private": true,
     "description": "BMW ConnectedDrive Status",
     "author": "Mihai Blaga <mihaiblaga89@gmail.com> (https://www.mihaiblaga.dev)",
