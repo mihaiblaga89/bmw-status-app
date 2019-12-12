@@ -16,7 +16,7 @@ const VehicleDetails = ({ vehicle }) => {
     useEffect(() => {
         vehicle
             .getStatus()
-            .then(res => setVehicleDetails(res.vehicleStatus)) // success
+            .then(setVehicleDetails) // success
             .catch(() => setVehicleDetails(undefined)); // fail
     }, []);
 
@@ -40,16 +40,12 @@ const VehicleDetails = ({ vehicle }) => {
         chargingLevelHv,
         connectionStatus,
         doorLockState,
-        remainingRangeElectric,
-        remainingRangeFuel,
+        remainingRangeTotal,
         mileage,
         updateTime,
         updateReason,
         vehicleCountry,
     } = vehicleDetails;
-    let remainingRange = 0;
-    if (remainingRangeElectric) remainingRange += remainingRangeElectric;
-    if (remainingRangeFuel) remainingRange += remainingRangeFuel;
 
     return (
         <Grid columns={3} divided>
@@ -62,7 +58,7 @@ const VehicleDetails = ({ vehicle }) => {
                     />
                 </Grid.Column>
                 <Grid.Column>Doors: {doorLockState.toLowerCase()}</Grid.Column>
-                <Grid.Column>Total range: {remainingRange} km</Grid.Column>
+                <Grid.Column>Total range: {remainingRangeTotal} km</Grid.Column>
             </Grid.Row>
 
             <Grid.Row>
@@ -71,7 +67,7 @@ const VehicleDetails = ({ vehicle }) => {
                     Country: <Flag name={vehicleCountry.toLowerCase()} />
                 </Grid.Column>
                 <Grid.Column>
-                    Last update: {updateTime} ({updateReason})
+                    Last update: {updateTime.toString()} ({updateReason})
                 </Grid.Column>
             </Grid.Row>
         </Grid>
