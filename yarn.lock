@@ -1173,12 +1173,12 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
-"@mihaiblaga89/bmw-connecteddrive-api@^0.5.1":
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/@mihaiblaga89/bmw-connecteddrive-api/-/bmw-connecteddrive-api-0.5.1.tgz#73a1e4def6fd7bbcd8e0b58685deee4606533b7f"
-  integrity sha512-7N/x8cbalmR5kqXraai8io20dEk0NhibblV+v1OEUWIIFWDk3J315qiafwDah/D8Eh8Qe9of9KZhNn73Xrc7hg==
+"@mihaiblaga89/bmw-connecteddrive-api@^0.5.2":
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/@mihaiblaga89/bmw-connecteddrive-api/-/bmw-connecteddrive-api-0.5.2.tgz#00a5bc08316a6fce96f19bd5fb769d88a447270b"
+  integrity sha512-S1LZ6VLrDQbctTJtdYyxYk5ByBY4mWvccV435nozQ0hOu/aFlE50Gom9Kj+m3UrOQUN/Mi/4Gv0gIaghXELxxA==
   dependencies:
-    axios "0.19.0"
+    axios "0.19.0-beta.1"
     axios-retry "^3.1.2"
     moment "^2.24.0"
     querystring "^0.2.0"
@@ -2116,12 +2116,12 @@ axios-retry@^3.1.2:
   dependencies:
     is-retry-allowed "^1.1.0"
 
-axios@0.19.0:
-  version "0.19.0"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.0.tgz#8e09bff3d9122e133f7b8101c8fbdd00ed3d2ab8"
-  integrity sha512-1uvKqKQta3KBxIz14F2v06AEHZ/dIoeKfbTRkK1E5oqjDnuEerLmYTgJB5AiQZHJcljpg1TuRzdjDR06qNk0DQ==
+axios@0.19.0-beta.1:
+  version "0.19.0-beta.1"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.0-beta.1.tgz#3d6a9ee75885d1fd39e108df9a4fb2e48e1af1e8"
+  integrity sha512-Dizm4IyB5T9OrREhPgbqUSofTOjhNJoc+CLjUtyH8SQUyFfik777lLjhl9cVQ4oo3bykkPAN20rxmY1o5w0jrw==
   dependencies:
-    follow-redirects "1.5.10"
+    follow-redirects "^1.4.1"
     is-buffer "^2.0.2"
 
 axobject-query@^2.0.2:
@@ -3621,13 +3621,6 @@ debug@2.6.9, debug@^2.1.3, debug@^2.2.0, debug@^2.3.3, debug@^2.6.0, debug@^2.6.
   dependencies:
     ms "2.0.0"
 
-debug@=3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-3.1.0.tgz#5bb5a0672628b64149566ba16819e61518c67261"
-  integrity sha512-OX8XqP7/1a9cqkxYw2yXss15f26NKWBpDXQd0/uK/KPqdQhxbPa994hnzjcE2VqQpDslf55723cKPUOGSmMY3g==
-  dependencies:
-    ms "2.0.0"
-
 debug@^3.0.0, debug@^3.1.1, debug@^3.2.5, debug@^3.2.6:
   version "3.2.6"
   resolved "https://registry.yarnpkg.com/debug/-/debug-3.2.6.tgz#e83d17de16d8a7efb7717edbe5fb10135eee629b"
@@ -4346,10 +4339,10 @@ eslint-plugin-jsx-a11y@^6.2.3:
     has "^1.0.3"
     jsx-ast-utils "^2.2.1"
 
-eslint-plugin-prettier@^3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-prettier/-/eslint-plugin-prettier-3.1.1.tgz#507b8562410d02a03f0ddc949c616f877852f2ba"
-  integrity sha512-A+TZuHZ0KU0cnn56/9mfR7/KjUJ9QNVXUhwvRFSR7PGPe0zQR6PTkmyqg1AtUUEOzTqeRsUwyKFh0oVZKVCrtA==
+eslint-plugin-prettier@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-prettier/-/eslint-plugin-prettier-3.1.2.tgz#432e5a667666ab84ce72f945c72f77d996a5c9ba"
+  integrity sha512-GlolCC9y3XZfv3RQfwGew7NnuFDKsfI4lbvRK+PIIo23SFH+LemGs4cKwzAaRa+Mdb+lQO/STaIayno8T5sJJA==
   dependencies:
     prettier-linter-helpers "^1.0.0"
 
@@ -4918,14 +4911,7 @@ flush-write-stream@^1.0.0:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
 
-follow-redirects@1.5.10:
-  version "1.5.10"
-  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.5.10.tgz#7b7a9f9aea2fdff36786a94ff643ed07f4ff5e2a"
-  integrity sha512-0V5l4Cizzvqt5D44aTXbFZz+FtyXV1vrDN6qrelxtfYQKW0KO0W2T/hkE8xvGa/540LkZlkaUjO4ailYTFtHVQ==
-  dependencies:
-    debug "=3.1.0"
-
-follow-redirects@^1.0.0:
+follow-redirects@^1.0.0, follow-redirects@^1.4.1:
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.9.0.tgz#8d5bcdc65b7108fe1508649c79c12d732dcedb4f"
   integrity sha512-CRcPzsSIbXyVDl0QI01muNDu69S8trU4jArW9LpOt2WtC6LyUJetcIrmfHsRBx7/Jb6GHJUiuqyYxPooFfNt6A==
