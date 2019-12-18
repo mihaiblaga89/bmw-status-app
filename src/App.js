@@ -6,36 +6,33 @@ import {
     LocationProvider,
     Router,
 } from '@reach/router';
+import styled from 'styled-components';
 
+import 'typeface-roboto/index.css';
 import './App.css';
 import Login from './pages/login';
 import Dashboard from './pages/dashboard';
 
-const electron = window.require('electron').remote;
-const notifier = window.require('node-notifier');
+// const electron = window.require('electron').remote;
+// const notifier = window.require('node-notifier');
 
 const source = createMemorySource('/');
 const history = createHistory(source);
 
+const Wrapper = styled.div`
+    background-color: white;
+    height: 100%;
+`;
+
 const App = () => (
-    <div style={{ backgroundColor: 'white', height: '100%' }}>
+    <Wrapper>
         <LocationProvider history={history}>
             <Router style={{ height: '100%' }}>
-                <Login path="/" />
-                <Dashboard path="/dash" />
+                <Login default path="login" />
+                <Dashboard path="dash/*" />
             </Router>
         </LocationProvider>
-    </div>
+    </Wrapper>
 );
-
-// const App = () => {
-//     return (
-//         <div className="App">
-//             <header className="App-header">
-//                 <img src={logo} className="App-logo" alt="logo" />
-//             </header>
-//         </div>
-//     );
-// };
 
 export default App;
