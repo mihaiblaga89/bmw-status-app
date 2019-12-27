@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Card, Image, Placeholder, Modal } from 'semantic-ui-react';
+import { Card, Button } from 'react-rainbow-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCar } from '@fortawesome/free-solid-svg-icons';
+import styled from 'styled-components';
 
 import carPlaceholder from '../../assets/images/car-placeholder.jpg';
-import VehicleDisplay from '../VehicleDetails';
+import { navigate } from '../../utils/history';
 
 const VehicleCard = ({ vehicle }) => {
     const [image, setImage] = useState(null);
@@ -15,35 +18,53 @@ const VehicleCard = ({ vehicle }) => {
             .catch(() => setImage(carPlaceholder));
     }, []);
 
-    const VCard = (
-        <Card>
-            {image ? (
-                <Image src={image} wrapped />
-            ) : (
-                <Placeholder>
-                    <Placeholder.Image square />
-                </Placeholder>
-            )}
-            <Card.Content>
-                <Card.Header>{vehicle.name}</Card.Header>
-                <Card.Meta>
-                    <span>{vehicle.vin}</span>
-                </Card.Meta>
-            </Card.Content>
-        </Card>
-    );
+    const IconContainer = styled.span`
+        width: 2.5rem;
+        height: 2.5rem;
+    `;
+
     return (
-        <Modal size="large" trigger={VCard}>
-            <Modal.Header>{vehicle.name}</Modal.Header>
-            <Modal.Content>
-                <VehicleDisplay vehicle={vehicle} />
-            </Modal.Content>
-        </Modal>
+        <div className="rainbow-m-around_large">
+            <Card
+                isLoading={!image}
+                actions={
+                    <Button
+                        label="View details"
+                        variant="outline-brand"
+                        onClick={() =>
+                            navigate('/dash/vehicle-details', {
+                                state: { vehicle },
+                                replace: true,
+                            })
+                        }
+                    />
+                }
+                icon={
+                    <IconContainer className="rainbow-background-color_success rainbow-border-radius_circle rainbow-align-content_center">
+                        <FontAwesomeIcon
+                            icon={faCar}
+                            size="lg"
+                            className="rainbow-color_white"
+                        />
+                    </IconContainer>
+                }
+                title={vehicle.name}
+            >
+                <div className="rainbow-p-around_xx-large rainbow-align-content_center rainbow-flex_column">
+                    <img src={image} alt="car" />
+                </div>
+            </Card>
+        </div>
     );
 };
 
 VehicleCard.propTypes = {
     vehicle: PropTypes.object.isRequired,
+    onClick: PropTypes.func,
+};
+
+VehicleCard.defaultProps = {
+    onClick: () => {},
 };
 
 export default VehicleCard;

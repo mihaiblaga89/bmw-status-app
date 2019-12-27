@@ -1,23 +1,17 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import {
-    createMemorySource,
-    createHistory,
-    LocationProvider,
-    Router,
-} from '@reach/router';
+import { LocationProvider, Router } from '@reach/router';
 import styled from 'styled-components';
+import { Application } from 'react-rainbow-components';
 
 import 'typeface-roboto/index.css';
 import './App.css';
 import Login from './pages/login';
 import Dashboard from './pages/dashboard';
+import { history } from './utils/history';
 
 // const electron = window.require('electron').remote;
 // const notifier = window.require('node-notifier');
-
-const source = createMemorySource('/');
-const history = createHistory(source);
 
 const Wrapper = styled.div`
     background-color: white;
@@ -25,14 +19,16 @@ const Wrapper = styled.div`
 `;
 
 const App = () => (
-    <Wrapper>
-        <LocationProvider history={history}>
-            <Router style={{ height: '100%' }}>
-                <Login default path="login" />
-                <Dashboard path="dash/*" />
-            </Router>
-        </LocationProvider>
-    </Wrapper>
+    <Application style={{ height: '100%' }}>
+        <Wrapper>
+            <LocationProvider history={history}>
+                <Router style={{ height: '100%' }}>
+                    <Login default path="login" />
+                    <Dashboard path="dash/*" />
+                </Router>
+            </LocationProvider>
+        </Wrapper>
+    </Application>
 );
 
 export default App;

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import BMWApi from '@mihaiblaga89/bmw-connecteddrive-api';
-import PropTypes from 'prop-types';
-import { Loader, Form, Checkbox, Button, Dropdown } from 'semantic-ui-react';
 import styled from 'styled-components';
+import { Input, Select, Button, Spinner } from 'react-rainbow-components';
 
 import DB from '../db';
 import { REGION_SELECT_OPTIONS, CREDENTIALS_SERVICE } from '../constants';
+import { navigate } from '../utils/history';
 
 // const electron = window.require('electron').remote;
 // console.log('el', electron);
@@ -21,18 +21,18 @@ const Wrapper = styled.div`
     height: 100%;
 `;
 
-const Login = ({ navigate }) => {
+const Login = () => {
     const [loading, setLoading] = useState(true);
     const [user, setUser] = useState('');
     const [pass, setPass] = useState('');
-    const [region, setRegion] = useState(null);
+    const [region, setRegion] = useState(REGION_SELECT_OPTIONS[0].value);
     const [remember, setRemember] = useState(false);
 
     const initializeBMWApi = async (username, password, reg) => {
         await BMWApi.init({
-            region: reg,
-            username,
-            password,
+            region: reg || region,
+            username: username || user,
+            password: password || pass,
             debug: true,
         });
 
@@ -45,8 +45,13 @@ const Login = ({ navigate }) => {
         }
         DB.settings.set('username', username);
         setLoading(false);
-        navigate('/dash');
+        navigate('/dash/vehicles');
         return true;
+    };
+
+    const onSubmit = e => {
+        e.preventDefault();
+        initializeBMWApi();
     };
 
     useEffect(() => {
@@ -64,7 +69,7 @@ const Login = ({ navigate }) => {
     if (loading) {
         return (
             <Wrapper>
-                <Loader inverted active />
+                <Spinner size="large" />
             </Wrapper>
         );
     }
@@ -72,53 +77,50 @@ const Login = ({ navigate }) => {
     return (
         <Wrapper>
             <div style={{ width: '400px' }}>
-                <Form>
-                    <Form.Field
+                <form onSubmit={onSubmit}>
+                    <Input
                         label="Username"
-                        control="input"
                         value={user}
                         required
-                        onChange={e => setUser(e.target.value)}
+                        type="email"
                         placeholder="email@example.com"
+                        name="email"
+                        onChange={e => setUser(e.target.value)}
                     />
-                    <Form.Field
+                    <Input
+                        className="mt-25"
                         label="Password"
-                        control="input"
+                        value={pass}
                         required
                         type="password"
-                        value={pass}
-                        onChange={e => setPass(e.target.value)}
                         placeholder="******"
+                        onChange={e => setPass(e.target.value)}
                     />
-                    <Form.Field>
-                        <Checkbox
-                            label="Remember me"
-                            checked={remember}
-                            onChange={(e, t) => setRemember(t.checked)}
-                        />
-                    </Form.Field>
-                    <Form.Field>
-                        <Dropdown
-                            placeholder="Region"
-                            value={region}
-                            fluid
-                            required
-                            selection
-                            onChange={(e, { value }) => setRegion(value)}
-                            options={REGION_SELECT_OPTIONS}
-                        />
-                    </Form.Field>
-                    <Button type="submit" fluid>
-                        Submit
-                    </Button>
-                </Form>
+                    <Select
+                        className="mt-25"
+                        label="Region"
+                        value={region}
+                        required
+                        options={REGION_SELECT_OPTIONS}
+                        onChange={e => setRegion(e.target.value)}
+                    />
+                    <Input
+                        className="mt-25"
+                        checked={remember}
+                        onChange={e => setRemember(e.target.checked)}
+                        type="checkbox"
+                        label="Remember me"
+                    />
+                    <Button
+                        className="mt-25"
+                        label="Submit"
+                        shaded
+                        type="submit"
+                    />
+                </form>
             </div>
         </Wrapper>
     );
-};
-
-Login.propTypes = {
-    navigate: PropTypes.func,
 };
 
 export default Login;
