@@ -1223,10 +1223,10 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
-"@mihaiblaga89/bmw-connecteddrive-api@^0.5.3":
-  version "0.5.3"
-  resolved "https://registry.yarnpkg.com/@mihaiblaga89/bmw-connecteddrive-api/-/bmw-connecteddrive-api-0.5.3.tgz#3d9d91347e7e36daa5b79ed5f788b3c24a18b24f"
-  integrity sha512-fBK+oyNbi78OMqa3/hDsYx9P/uzSKRUJeKJ2ASh94vV4TBFuUwEHuQsxGTAtnzbYj5xIyYen/L6/GNBgGH4bzA==
+"@mihaiblaga89/bmw-connecteddrive-api@^0.5.4":
+  version "0.5.4"
+  resolved "https://registry.yarnpkg.com/@mihaiblaga89/bmw-connecteddrive-api/-/bmw-connecteddrive-api-0.5.4.tgz#4aa1537f7fc07cd55788da886b72b0f05eca6353"
+  integrity sha512-E7pSmwzucy/cKtTgrQmSXakfmjX70Hx1wKHCyHMaZ4W0349b9iaGoVsbv/Qc9+3hbu6LZIi9yoneAqI13iwKrg==
   dependencies:
     axios "0.19.0-beta.1"
     axios-retry "^3.1.2"
