@@ -7542,10 +7542,10 @@ keyboard-key@^1.0.4:
   resolved "https://registry.yarnpkg.com/keyboard-key/-/keyboard-key-1.0.4.tgz#52d8fa07b7e17757072aa22a67fb4ae85e4c46b0"
   integrity sha512-my04dE6BCwPpwoe4KYKfPxWiwgDYQOHrVmtzn1CfzmoEsGG/ef4oZGaXCzi1+iFhG7CN5JkOuxmei5OABY8/ag==
 
-keytar@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/keytar/-/keytar-5.0.0.tgz#c89b6b7a4608fd7af633d9f8474b1a7eb97cbe6f"
-  integrity sha512-a5UheK59YOlJf9i+2Osaj/kkH6mK0RCHVMtJ84u6ZfbfRIbOJ/H4b5VlOF/LgNHF6s78dRSBzZnvIuPiBKv6wg==
+keytar@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/keytar/-/keytar-5.2.0.tgz#7543190be98e2a751466096ce3ca1b1a4b8f39fe"
+  integrity sha512-vsIX6n2BgTwzbKOSPIiJ8YduwHlPEE/G5dkmZWXaQK9qiGZMQyhxlFA4O6vrvM5fsXTMgUOrODYAqgpfNSRLDw==
   dependencies:
     nan "2.14.0"
     prebuild-install "5.3.3"
