@@ -77,7 +77,7 @@
         "eslint-plugin-react-hooks": "^2.5.0",
         "file-loader": "3.0.1",
         "fs-extra": "8.1.0",
-        "html-webpack-plugin": "4.0.0-beta.14",
+        "html-webpack-plugin": "4.0.3",
         "husky": "^4.2.3",
         "identity-obj-proxy": "3.0.0",
         "is-wsl": "^2.1.1",
