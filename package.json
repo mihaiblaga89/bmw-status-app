@@ -10,7 +10,7 @@
         "electron-is-dev": "^1.1.0",
         "electron-store": "^5.1.1",
         "keytar": "^5.4.0",
-        "node-notifier": "^6.0.0",
+        "node-notifier": "^8.0.0",
         "prop-types": "^15.7.2",
         "react": "^16.13.0",
         "react-dom": "^16.13.0",
